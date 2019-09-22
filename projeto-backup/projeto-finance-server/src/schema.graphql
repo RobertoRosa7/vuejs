@@ -1,0 +1,87 @@
+# expor dados somente o necessário para client api
+
+# scalar para data
+scalar Date
+
+# query
+type Query{
+	accounts: [ Account! ]! # lista de contans não nulo
+	categories(operation: Operation): [ Category! ]!
+	records(
+		# fazer comentários no graphQL usar três aspas duplas
+		"""
+		Month and Year: Format "MM-YYYY" e.g.: 06-2019
+		"""
+		month: String
+		type: Operation,
+		accountsIds: [ ID! ],
+		categoriesIds: [ ID! ]
+	): [ Record! ]! # se não hover registro, trazer array vazio
+	user: User
+	"""
+	Year, Month and Day: Format "YYYY-MM-DD" e.g.: 2019-06-01
+	"""
+	totalBalance(date: Date!): Float!
+}
+# Mutation
+type Mutation{
+	createAccount(description: String!): Account!
+	createCategory(description: String!, operation: Operation!): Category!
+	createRecord(
+		accountId: ID!
+		categoryId: ID!
+		amount: Float! # tipo float para operações de valores em moeda
+		type: Operation!
+		date: Date! # data do sistema 2019-04-29
+		description: String!
+		tags: String
+		note: String
+	): Record!
+	signin(email: String!, password: String!): AuthPayload
+	signup(email: String!, password: String!, name: String!): AuthPayload
+}
+# auth
+type AuthPayload{
+	token: String!
+	user: User
+}
+# user
+type User {
+	id: ID!
+	name: String!
+	email: String!
+}
+
+# Account
+type Account {
+	id: ID!
+	user: User
+	description: String!
+}
+
+# Operation 
+enum Operation { # somene números
+  DEBIT
+  CREDIT
+}
+
+# Category
+type Category{
+  id: ID!
+  user: User
+  description: String!
+  operation: Operation!
+}
+# Record - transação
+type Record{
+  id: ID!
+  user: User!
+  account: Account!
+  category: Category!
+  amount: Float! # tipo float para operações de valores em moeda
+  type: Operation!
+  date: Date! # data do sistema 2019-04-29
+  description: String!
+  tags: String
+  note: String
+}

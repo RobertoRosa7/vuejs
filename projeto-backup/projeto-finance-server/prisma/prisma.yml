@@ -1,0 +1,17 @@
+# prisma server
+endpoint: ${env:PRISMA_ENDPOINT}/${env:PRISMA_SERVICE}/${env:PRISMA_STAGE} # url do banco de dados com variável de ambiente
+datamodel: datamodel.prisma # modelo de arquivo para modelagem de dados
+
+# gerar prisma client
+generate:
+  - generator: javascript-client # gerar um client javascript com base no datamodel acima
+    output: ./../src/generated/prisma-client # diretório para saída de dados
+  - generator: graphql-schema # gerar um schema para usar no prisma-binding
+    output: ./../src/generated/graphql-schema # diretório 
+
+# executar prisma automaticamente
+hooks:
+  post-deploy:
+    - prisma generate # comando
+# exec [ prisma generate ] no terminal dentro do diretório raiz do projeto
+# exec [ prisma generate ] para atualização das configurações

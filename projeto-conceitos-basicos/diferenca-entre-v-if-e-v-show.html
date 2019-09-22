@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+	<!--
+		v-show: não funciona com template, e nem com v-if, v-else
+		v-if: os elementos são retirados da renderização, não existindo no DOM
+
+		v-show: usar quando precisamos exibir/esconder com muita frequência
+		v-if: usar quando precisamos exibir/escoder com pouca frequência
+	-->
+    <div id="app">
+		<button @click="mostrar = !mostrar">Toggle</button>
+		<p v-if="mostrar">Diretive v-if " {{ mostrar }} " : <span>{{ texto }}</span></p>
+		<p v-show="mostrar">Diretive v-show " {{ mostrar }} " : <span>{{ texto }}</span></p>
+		<input v-model="texto">
+	</div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				mostrar: true,
+				texto: 'Ola VueJS'
+            },
+
+            methods:{
+      
+            }
+        });
+    </script>
+</body>
+</html>

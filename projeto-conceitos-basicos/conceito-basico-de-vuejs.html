@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+		body{
+			background: #232323;
+			font-family: sans-serif;
+		}
+       #app{
+		   width:760px;
+		   margin: auto;
+		   background: ghostwhite;
+		   padding:15px;
+		   box-shadow: 0 0 20px #00000090, inset 0 0 5px 0px #00000010;
+		   border-radius:5px;
+	   }
+	   #app:before{
+		   content:'Guia Completo com VueJs';
+		   text-align:center;
+		   display:block;
+		   font-size: 2.3em;
+		   color: #26262670;
+		   border-bottom: 1px solid #26262610;
+	   }
+	   #app h3{
+		   text-align:center;
+		   font-size:1.5em;
+	   }
+	   .notification-success{
+		   text-align:center;
+		   font-size: 1.2em;
+		   color: #262626;
+		   background-color: lightgreen;
+		   padding:10px 0;
+	   }
+    </style>
+</head>
+<body>
+    <div id="app">
+		<h3>{{ title }}</h3>
+		<h1>Conceito básico</h1>
+		<p v-if="showMessage" class="notification-success">Título foi alterado com sucesso!</p>
+		<p>Título: {{ titulo }}</p>
+		<p>Título lower case: {{ tituloLowerCase }}</p>
+		<input v-model="novoTitulo" placeholder="digite novo titulo">
+		<button @click="alterarTitulo">alterar titulo</button>
+	</div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+
+            data: {
+				title: 'Conceito básico de VueJS',
+
+				titulo: 'Nova instancia de VueJS',
+				novoTitulo: '',
+				showMessage: false,
+			},
+			methods:{
+				alterarTitulo: function(){
+					this.titulo = this.novoTitulo;
+					this.novoTitulo = '';
+				}
+			},
+			computed:{
+				tituloLowerCase: function(){
+					// slite() cria um array com base no divisor - string to array
+					// join() cria uma string com base no juntor - array to string
+					return this.titulo.toLowerCase().split(' ').join('-');
+				}
+			},
+			watch:{
+				titulo: function(antigoTitulo, novoTitulo){
+					console.log(`Título foi alterado de ${antigoTitulo} para ${novoTitulo}`);
+					this.showMessage = true;
+					const self = this; // altera a referência para esta função
+					setTimeout(function(){
+						self.showMessage = false;
+					}, 3000);
+				}
+			}
+        });
+    </script>
+</body>
+</html>

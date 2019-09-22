@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+       .caixa{
+		   position:absolute;
+		   top:50%;
+		   left:50%;
+		   transform:translate(-50%, -50%);
+		   width:200px;
+		   height:200px;
+		   background: #333;
+	   }
+	   .coral {
+		   background-color: lightcoral;
+	   }
+	   .verde{
+		   background-color: lightgreen;
+	   }
+	   .vermelho{
+		   background-color: red;
+	   }
+	   .azul{
+		   background-color: lightblue;
+	   }
+	   .circle{
+		   border-radius:50%;
+	   }
+	   .form{
+		   width:50%;
+		   height:40px;
+		   display:block;
+		   margin: auto;
+		   transform: translateY(30px);
+		   padding:10px;
+	   }
+    </style>
+</head>
+<body>
+    <div id="app">
+		<!-- se o nome da classe tiver junção com - use '' -->
+		<div
+			class="caixa"
+			:class="[ 'circle', className, {verde: applyClass }]"
+			@click="applyClass = !applyClass"
+		>
+		</div>
+		<input class="form" v-model="className" placeholder="digite nome de uma classe">
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+				className: '',
+				applyClass: false
+            },
+			computed:{
+				classCSS: function(){
+					return{
+						azul: this.applyClass,
+						verde: !this.applyClass,
+						circle: this.applyClass
+					}
+				}
+			}
+        });
+    </script>
+</body>
+</html>

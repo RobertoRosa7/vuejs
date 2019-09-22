@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+	<!--
+		template: é utilizado como container para renderização dos
+		elementos, não é exibido no documento, mostrando apenas as li
+		e ocultando o template
+	-->
+    <div id="app">
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<template v-if="mostrar">
+				<li>sub-item 1</li>
+				<li>sub-item 2</li>
+			</template>
+		</ul>		
+    </div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				mostrar: false
+            },
+
+            methods:{
+      
+            }
+        });
+    </script>
+</body>
+</html>

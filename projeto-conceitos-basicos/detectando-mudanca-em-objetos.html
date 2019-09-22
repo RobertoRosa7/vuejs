@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+		body{
+			background: #232323;
+			font-family: sans-serif;
+		}
+       #app{
+		   width:769px;
+		   margin: auto;
+		   background: ghostwhite;
+		   padding:15px;
+		   box-shadow: 0 0 20px #00000090, inset 0 0 5px 0px #00000010;
+		   border-radius:5px;
+	   }
+	   #app:before{
+		   content:'Guia Completo com VueJs';
+		   text-align:center;
+		   display:block;
+		   font-size: 2.3em;
+		   color: #26262670;
+		   border-bottom: 1px solid #26262610;
+	   }
+	   #app h3{
+		   text-align:center;
+		   font-size:2em;
+	   }
+    </style>
+</head>
+<body>
+    <div id="app">
+		<h3>{{ title }}</h3>
+		<p>Objeto</p>
+		<ul class="line">
+			<template v-for="(valor, chave) in produto">
+				<li>{{ chave }} : {{ valor }}</li>
+			</template>
+		</ul>
+		<button @click="addProperty">adicionar propriedade</button>
+		<button @click="substituirObjeto">substituir objeto</button>
+	</div>
+	<!--
+		VueJS não permite adicionar propriedade na raiz
+	-->
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				title: 'Detectando alterações em objetos e substituição',
+				texto: '',
+				produto:{
+					id: 2,
+					nome: 'Notebook',
+					marca: 'Dell'
+				}
+			},
+			
+            methods:{
+				addProperty: function(e){
+					// this.usuario = { name: 'kakashi'} // não reativo
+					// this.produto.preco = 100 // não reativo
+					// Vue.set(this.produto, 'preco', 100);
+					this.$set(this.produto, 'preco', 200);
+				},
+				substituirObjeto: function(e){
+					// Object.assign(this.produto, {preco: 100, cor: 'preto'}); // não reativo
+					this.produto = Object.assign({}, this.produto, {preco: 100, cor: 'preto'});
+				}
+            }
+        });
+    </script>
+</body>
+</html>

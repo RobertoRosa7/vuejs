@@ -1,0 +1,43 @@
+# Expor somente os dados necessário para as apliações 
+
+type Query {
+  accounts: [ Account! ]!
+  categories(operation: Operation): [ Category! ]!
+  user: User
+}
+
+type Mutation {
+  createAccount(description: String!): Account!
+  createCategory(description: String!, operation: Operation!): Category!
+  login(email: String!, password: String!): AuthPayload
+  signup(email: String!, password: String!, name: String!): AuthPayload
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID! #indica que este campo deve ser único
+  name: String! #sinal de exclamação é obrigatório
+  email: String!
+}
+
+type Account {
+  id: ID!
+  user: User
+  description: String!
+}
+
+enum Operation {
+  DEBIT,
+  CREDIT
+}
+
+type Category {
+  id: ID!
+  user: User
+  description: String!
+  operation: Operation!
+}

@@ -1,0 +1,34 @@
+type User {
+  id: ID! @unique #indica que este campo deve ser único
+  name: String! #sinal de exclamação é obrigatório
+  email: String! @unique
+  password: String!
+}
+type Account {
+  id: ID! @unique
+  user: User #relacionamento com usuário unidirecional
+  description: String!
+}
+# enum é para referência interna e não para criar uma tabela no postgres
+enum Operation {
+  DEBIT
+  CREDIT
+}
+type Category {
+  id: ID! @unique
+  user: User
+  description: String!
+  operation: Operation!
+}
+type Record {
+  id: ID! @unique
+  user: User!
+  account: Account!
+  category: Category!
+  amount: Float! # valor em dinheiro
+  type: Operation! # debito ou credito
+  date: DateTime
+  description: String!
+  tags: String
+  note: String
+}

@@ -1,0 +1,11 @@
+mutation Signup ($email: String!, $password: String!, $name: String!) {
+	# signup deve ser o mesmo da api graphQL
+	signup(email: $email, password: $password, name: $name) {
+		token
+		user{
+			id
+			name
+			email
+		}
+	}
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+		<p v-if="mostrar">Ola VueJS</p>
+		<p v-else="mostrar">Até logo VueJS</p>
+		<button @click="mostrar = !mostrar">Alternar</button>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				mostrar: false
+            },
+
+            methods:{
+      
+            }
+        });
+    </script>
+</body>
+</html>

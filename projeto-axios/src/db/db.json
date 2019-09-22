@@ -1,0 +1,128 @@
+{
+  "tarefas": [
+    {
+      "id": 1,
+      "titulo": "Aprender JavaScript",
+      "concluido": true
+    },
+    {
+      "titulo": "Ajustar botão de tarefa para editção, concluída",
+      "concluido": true,
+      "id": 5
+    },
+    {
+      "titulo": "Deletar tarefas",
+      "concluido": true,
+      "id": 6
+    },
+    {
+      "titulo": "Criar novo evento para atualização de apenas concluído",
+      "concluido": true,
+      "id": 7
+    },
+    {
+      "titulo": "Verificar função de conclusão de tarefa",
+      "concluido": true,
+      "id": 8
+    },
+    {
+      "titulo": "Requisições PUT - atualização de dados",
+      "concluido": true,
+      "id": 9
+    },
+    {
+      "titulo": "Marcação de concluído e pendente",
+      "concluido": true,
+      "id": 10
+    },
+    {
+      "titulo": "Ordenar tarefas - dividindo as que estão concluídas das que ainda não foram.",
+      "concluido": true,
+      "id": 11
+    },
+    {
+      "titulo": "Adicionar requisição axios http request",
+      "concluido": true,
+      "id": 12,
+      "curso": "VueJS"
+    },
+    {
+      "titulo": "Inspecionar resposta do Servidor com Axios",
+      "concluido": true,
+      "id": 13
+    },
+    {
+      "titulo": "Tratar os erros emitido pelo servidor",
+      "concluido": true,
+      "id": 14
+    },
+    {
+      "titulo": "Filtrar os erros, com 'then' e 'catch'",
+      "concluido": true,
+      "id": 15
+    },
+    {
+      "titulo": "Imprimir para usuário os possíveis erros acontecidos e sugerir solução",
+      "concluido": true,
+      "id": 16
+    },
+    {
+      "titulo": "Centralizar axios para modulação",
+      "concluido": true,
+      "id": 17
+    },
+    {
+      "titulo": "Criar instância do Axios com configurações globais, (padrões)",
+      "concluido": true,
+      "id": 18
+    },
+    {
+      "titulo": "Interceptar requisições com Axios",
+      "concluido": true,
+      "id": 19,
+      "curso": "VueJS"
+    },
+    {
+      "titulo": "Fazer requisição assíncrona para interceptadores",
+      "concluido": true,
+      "curso": "VueJS",
+      "id": 20
+    },
+    {
+      "titulo": "Interceptar requisições de erros antes de enviar ao servidor",
+      "concluido": true,
+      "curso": "VueJS",
+      "id": 21
+    },
+    {
+      "titulo": "Enviar cabeçalho na requisição",
+      "concluido": true,
+      "curso": "VueJS",
+      "id": 22
+    },
+    {
+      "titulo": "Interceptar resposta do servidor antes de renderizar na aplicação",
+      "concluido": false,
+      "curso": "VueJS",
+      "id": 23
+    },
+    {
+      "titulo": "Interceptando resposta do servidor e filtrando dados do array para impressão",
+      "concluido": false,
+      "curso": "VueJS",
+      "id": 24
+    },
+    {
+      "titulo": "Filtro de dados adicionado na intercepção da resposta",
+      "concluido": false,
+      "curso": "VueJS",
+      "id": 25
+    },
+    {
+      "titulo": "Converter promises para async await",
+      "concluido": false,
+      "curso": "VueJS",
+      "id": 26
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+		body{
+			background: #232323;
+			font-family: sans-serif;
+		}
+       #app{
+		   width:769px;
+		   margin: auto;
+		   background: ghostwhite;
+		   padding:15px;
+		   box-shadow: 0 0 20px #00000090, inset 0 0 5px 0px #00000010;
+		   border-radius:5px;
+	   }
+	   #app:before{
+		   content:'Guia Completo com VueJs';
+		   text-align:center;
+		   display:block;
+		   font-size: 2.3em;
+		   color: #26262670;
+		   border-bottom: 1px solid #26262610;
+	   }
+	   #app h3{
+		   text-align:center;
+		   font-size:2em;
+	   }
+	   .results{
+		   display:flex;
+		   flex-wrap: wrap;
+		   justify-content: space-between;
+		   align-items: flex-start;
+	   }
+	   .results li{
+		   list-style: none;
+		   width:45%;
+		   background: white;
+		   margin:5px;
+		   padding: 15px 10px;
+		   position:relative;
+		   cursor:pointer;
+		   text-transform: uppercase;
+		   font-size:.8em;
+		   letter-spacing: 1px;
+	   }
+	   .results li:hover{
+		   background: gainsboro;
+	   }
+	   .results li:before{
+		   position:absolute;
+		   top:0;
+		   left:0;
+		   content:'';
+		   height:100%;
+		   width:5px;
+		   background: slategray;
+	   }
+	   .results li:hover:before{
+		   background:mediumspringgreen;
+	   }
+	   .add-task{
+		   display:flex;
+		   width:80%;
+		   margin: auto;
+		   justify-content: space-between;
+	   }
+	   .add-task input{
+		   border:none;
+		   outline:none;
+		   background: gainsboro;
+		   width:90%;
+		   padding:12px 16px;
+		   margin: 0 5px;
+	   }
+	   .add-task button{
+		   border:none;
+		   outline:none;
+		   background: lightseagreen;
+		   color:white;
+		   margin: 0 5px;
+		   width:50%;
+		   cursor:pointer;
+	   }
+    </style>
+</head>
+<body>
+	<!--
+		
+	-->
+    <div id="app">
+		<h3>{{ title }}</h3>
+		<h1>Tarefas</h1>
+		<div class="add-task">
+			<input v-model="texto">
+			<button @click="addTarefa">Adicionar tarefa</button>
+			<button @click="substituirTarefa">substituir tarefa</button>
+		</div>
+		<p>Todas as tarefas</p>
+		<ul class="results">
+			<template v-for="tarefa in tarefas" :key="tarefa.id">
+				<li>{{ tarefa.titulo }}</li>
+			</template>
+		</ul>
+		<p>tarefas Não realizada</p>
+		<ul class="results" v-if="tarefasIncompletas.length">
+			<template v-for="tarefa in tarefasIncompletas" :key="tarefa.id">
+				<li style="background: palevioletred; opacity: .9;">{{ tarefa.titulo }}</li>
+			</template>
+		</ul>
+		<p v-else>Todas as tarefas foram feitas!</p>
+		<p>tarefas realizadas</p>
+		<ul class="results">
+			<template v-for="tarefa in tarefas" :key="tarefa.id" v-if="tarefa.completa">
+				<li style="opacity: .7;">{{ tarefa.titulo }}</li>
+			</template>
+		</ul>
+	</div>
+	<!--
+		para cortar um array e substituir por um novo com os dados cortado devemos usar slice(0, 5), onde
+		zero indica o início do array e cinco a posição final.. ficando algo parecido com: 
+		@click="tarefa = tarefas.slice(0, 5)"
+
+		usamos Vue.set() para substituir um valor do array de forma reativa, portanto, assim que chamamos o
+		método alteração é feita.
+		usa três parâmetros necessários Vue.set(arrayAntigo, indice, novoArray);
+	-->
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				title: 'Detectando alterações em array e substituição',
+				texto: '',
+				tarefas: [
+					{ id: 1, completa: false, titulo: 'consertar o monitor' },
+					{ id: 2, completa: false, titulo: 'verificar o Teclado' },
+					{ id: 3, completa: true, titulo: 'ajustar o Mouse' },
+					{ id: 4, completa: false, titulo: 'comprar novo Notebook' },
+					{ id: 5, completa: false, titulo: 'vender o Desktop' },
+					{ id: 6, completa: true, titulo: 'salvar dados no micro SDcard do Smartphone' },
+					{ id: 7, completa: false, titulo: 'desistir de comprar icloud do Iphone' },
+					{ id: 8, completa: false, titulo: 'trocar o Tablet por outro' },
+					{ id: 9, completa: true, titulo: 'doar o Ipad para Camila' },
+					{ id: 10, completa: true, titulo: 'Assistir netflix na Tv' }
+				]
+			},
+			computed:{
+				// usando filter() para filtrar somente as tarefas incompletas em um novo array
+				tarefasIncompletas: function(){
+					return this.tarefas.filter(function(tarefa){
+						return !tarefa.completa;
+					});
+				}
+			},
+            methods:{
+				addTarefa: function(event){
+					let id = this.tarefas.length + 1;
+					this.tarefas.push({id: id, completa: false, titulo: this.texto});
+				},
+				substituirTarefa: function(event){
+					let size = this.tarefas.length; // tamanho total de índice do array
+					let indice = Math.round(size / 2); // pegar a posição do índice
+					let tarefa = { id: (size + 1), completa: false, titulo: this.texto }; // nova tarefa
+					// this.tarefas[indice] = tarefa; // não reative
+					
+					// Vue.set(this.tarefas, indice, tarefa); // local
+					// this.$set(this.tarefas, indice, tarefa); // global
+					this.tarefas.splice(indice, 1, tarefa); // native
+				}
+            }
+        });
+    </script>
+</body>
+</html>

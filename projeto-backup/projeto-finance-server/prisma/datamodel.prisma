@@ -1,0 +1,36 @@
+type User {
+  id: ID! @unique # tipo id: obrigatório, não pode ser nulo e único
+  name: String!
+  email: String! @unique # obrigatório, não pode ser  nulo e único
+  password: String! # obrigatório e não pode ser nulo
+  # accounts: [Account!]! relação bidirecionado
+}
+type Account {
+  id: ID! @unique
+  user: User # relação unidirecional,
+  description: String!
+}
+enum Operation { # somene números
+  DEBIT
+  CREDIT
+}
+type Category {
+  id: ID! @unique
+  user: User
+  description: String!
+  operation: Operation!
+}
+type Record {
+  id: ID! @unique
+  user: User!
+  account: Account!
+  category: Category!
+  amount: Float! # tipo float para operações de valores em moeda
+  type: Operation!
+  date: DateTime! # data do sistema
+  description: String!
+  tags: String
+  note: String
+}
+
+# executar [prisma deploy] para atualizar a tabela de dados

@@ -1,0 +1,54 @@
+{
+  "tarefas": [
+    {
+      "titulo": "Divisão de tarefas concluídas e não concluídas",
+      "concluido": true,
+      "id": 3
+    },
+    {
+      "titulo": "Utilizando getters como propriedades",
+      "concluido": true,
+      "id": 5
+    },
+    {
+      "titulo": "Implementar getters de forma de método, para maninulação de busca de id",
+      "id": 6,
+      "concluido": true
+    },
+    {
+      "titulo": "Mapeando os getters com mapGetters",
+      "concluido": true,
+      "id": 7
+    },
+    {
+      "titulo": "Alterando o estado com Mutation",
+      "concluido": true,
+      "id": 8
+    },
+    {
+      "titulo": "Mutations com mapMutations, com funções ",
+      "concluido": true,
+      "id": 11
+    },
+    {
+      "titulo": "Verificar mutations no devtools",
+      "concluido": true,
+      "id": 12
+    },
+    {
+      "titulo": "Adicionar actions para mutations",
+      "concluido": true,
+      "id": 13
+    },
+    {
+      "titulo": "Implementando mutations no módulo de tarefas",
+      "concluido": true,
+      "id": 15
+    },
+    {
+      "titulo": "novo teste",
+      "concluido": true,
+      "id": 16
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-on:click="onClick('p', $event)">paragrafo
+            <button v-on:click.stop="onClick('button', $event)">clique</button>
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                name: ''
+            },
+
+            methods:{
+                onClick: function(texto, event){
+                    console.log(event.type, ':', texto);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

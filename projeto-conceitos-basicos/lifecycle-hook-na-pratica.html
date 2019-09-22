@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+		body{
+			background: #232323;
+			font-family: sans-serif;
+		}
+       #app{
+		   width:58%;
+		   margin: auto;
+		   background: ghostwhite;
+		   padding:15px;
+		   box-shadow: 0 0 20px #00000090, inset 0 0 5px 0px #00000010;
+		   border-radius:5px;
+	   }
+	   #app:before{
+		   content:'Guia Completo com VueJs';
+		   text-align:center;
+		   display:block;
+		   font-size: 2.3em;
+		   color: #26262670;
+		   border-bottom: 1px solid #26262610;
+	   }
+	   #app h3{
+		   text-align:center;
+		   font-size:1.5em;
+	   }
+	   .notification-success{
+		   text-align:center;
+		   font-size: 1.2em;
+		   color: #262626;
+		   background-color: lightgreen;
+		   padding:10px 0;
+	   }
+	   @media screen and (max-width:768.98px){
+		   #app{
+			   width:85%;
+		   }
+	   }
+    </style>
+</head>
+<body>
+    <div id="app">
+		<h3>{{ title }}</h3>
+		<h2>Instância VueJS</h2>
+		<button @click="changeTitle">alterar titulo</button>
+		<button @click="destroy">destruir instancia</button>
+	</div>
+	<!--
+		Lifecycle Hooks: 
+		gatilhos de inicialização, pontos que defininem cada momento do ciclo de vida
+	-->
+	<script type="text/javascript">
+        const vm = new Vue({ 
+			el: '#app',
+			data:{
+				title: 'Lifecycle hooks na prática'
+			},
+			methods:{
+				changeTitle: function(e){
+					this.title = 'Curso de VueJS - Guia Completo!'
+				},
+				destroy: function(e){
+					this.$destroy();
+				}
+			},
+			beforeCreate: function(){
+				console.log('01 - beforeCreate()');
+			},
+			created: function(){
+				console.log('02 - created()');
+			},
+			beforeMount: function(){
+				console.log('03 - beforeMount()');
+			},
+			mounted: function(){
+				console.log('04 - mounted()');
+			},
+			beforeUpdate: function(){
+				console.log('05 - beforeUpdate()');
+			},
+			updated: function(){
+				console.log('06 - updated()');
+			},
+			beforeDestroy: function(){
+				console.log('07 - beforeDestroy()');
+			},
+			destroyed: function(){
+				console.log('08 - destroyed()');
+			},
+		});
+    </script>
+</body>
+</html>

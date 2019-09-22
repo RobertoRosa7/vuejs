@@ -1,0 +1,11 @@
+mutation Signin ($email: String!, $password: String!) {
+	# signin deve ser o mesmo da api graphQL
+	signin(email: $email, password: $password) {
+		token
+		user{
+			id
+			name
+			email
+		}
+	}
+}

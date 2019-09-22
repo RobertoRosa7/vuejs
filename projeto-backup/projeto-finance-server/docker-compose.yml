@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  api: # representa a API do GraphQL yoga - interface entre servidor e cliente
+    build: . # ponto para indicar o mesmo diretório do yml - [ Dockerfile ]
+    ports: # quando acessar a porta 4000 será referenciado para a porta do container 4000
+      - "4000:4000"
+    environment:
+      PRISMA_ENDPOINT: http://prisma:4466 #/${PRISMA_SERVICE}/${PRISMA_STAGE} # indicando ao prisma client usar este serviço no container
+      JWT_SECRET: ${JWT_SECRET} # chave de descriptografia do token
+      PRISMA_SERVICE: ${PRISMA_SERVICE}
+      PRISMA_STAGE: ${PRISMA_STAGE}
+    command: npm run dev # indicar qual comando precisar para iniciar a aplicação
+    volumes:
+      - .:/usr/app # observar e copiar qualquer alteração no container do docker
+
+  prisma:
+    image: prismagraphql/prisma:1.28
+    restart: always
+    ports:
+    - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            host: postgres
+            port: 5432
+            user: prisma
+            password: prisma
+            migrations: true
+            rawAccess: true
+
+  postgres:
+    image: postgres:10.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+
+# exec [ docker-compose up -d ] para compilar todas as configuração colocada aqui
+# exec [ docker-compose up -d --build --no-deps api ] após as inclusão environment prisma endpoint
+# exe [ docker-compose up -d ] após inclusão do volumes

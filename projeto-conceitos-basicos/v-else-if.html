@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+		<p v-if="nota === 'A'">Parabéns você tirou nota: A</p>
+		<p v-else-if="nota === 'B'">Você tirou um nota: B, pode melhorar</p>
+		<p v-else-if="nota === 'C'">Precisa melhorar um pouco mais, nota: C</p>
+		<p v-else>Ainda não publicamos sua nota</p>
+		<input 
+			type="text" 
+			name="nota" 
+			id="input-nota"
+			title="digite sua nota"
+			placeholder="Digite sua nota"
+			required
+			v-model="nota"
+		>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				nota:''
+            },
+
+            methods:{
+      
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+		body{
+			background: #232323;
+			font-family: sans-serif;
+		}
+       #app{
+		   width:760px;
+		   margin: auto;
+		   background: ghostwhite;
+		   padding:15px;
+		   box-shadow: 0 0 20px #00000090, inset 0 0 5px 0px #00000010;
+		   border-radius:5px;
+	   }
+	   #app:before{
+		   content:'Guia Completo com VueJs';
+		   text-align:center;
+		   display:block;
+		   font-size: 2.3em;
+		   color: #26262670;
+		   border-bottom: 1px solid #26262610;
+	   }
+	   #app h3{
+		   text-align:center;
+		   font-size:2em;
+	   }
+    </style>
+</head>
+<body>
+	<!--
+		v-for: para renderizar lista, de objetos ou array
+		primeiro: valor das propriedades ou indice
+		segundo: o indice
+	-->
+    <div id="app">
+		<h3>{{ title }}</h3>
+		<h1>Produtos</h1>
+		<ul>
+			<li v-for="(produto, chave) in produtos" :key="produto.id">{{ chave }} : {{ produto.nome }}</li>
+		</ul>
+		<button @click="produtos.reverse()">Inverter lista</button>
+		<input type="text" v-model="texto">
+		<button @click="addProduto">adicionar produtos</button>
+	</div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+
+            data: {
+				title: 'Trabalhando com key',
+				texto: '',
+				produtos: [
+					{ id: 1, nome: 'Monitor' },
+					{ id: 2, nome: 'Teclado' },
+					{ id: 3, nome: 'Mouse' },
+					{ id: 4, nome: 'Notebook' },
+					{ id: 5, nome: 'Desktop' },
+					{ id: 6, nome: 'Smartphone' },
+					{ id: 7, nome: 'Iphone' },
+					{ id: 8, nome: 'Tablet' },
+					{ id: 9, nome: 'Ipad' },
+					{ id: 10, nome: 'Tv' }
+				]
+            },
+			methods:{
+				addProduto: function(){
+					let id = this.produtos.length + 1;
+					this.produtos.push({ id: id, nome: this.texto})
+				}
+			}
+        });
+    </script>
+</body>
+</html>

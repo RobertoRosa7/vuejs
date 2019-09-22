@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt" dir="auto">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@2.6.7/dist/vue.js" type="text/javascript"></script>
+    <title>VueJS - Guia Completo com vuejs</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+	<!--
+		key: funciona como id único para o elemento pelo vuejs, assim
+		quando for reutilizado, será novo elemento e não o mesmo
+	-->
+    <div id="app">
+		<button @click="login = !login">Toggle</button>	
+
+		<template v-if="login">
+			<label>Login:</label>
+			<input placeholder="login" key="campo-login">
+		</template>
+		<template v-else>
+			<label>E-mail:</label>
+			<input placeholder="E-mail" key="campo-email">
+		</template>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({ 
+            el: '#app',
+            data: {
+				login: true
+            },
+
+            methods:{
+      
+            }
+        });
+    </script>
+</body>
+</html>
